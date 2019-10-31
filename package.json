@@ -1,0 +1,27 @@
+{
+  "name": "com.fabricio.touchgestures",
+  "version": "1.0.0",
+  "displayName": "Touch Gestures",
+  "description": "Touch Gestures",
+  "unity": "2019.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabriciomsantos/Unity_TouchGestures.git",
+    "revision": "HEAD"
+  },
+  "keywords": [
+    "Input",
+    "Touch",
+    "Gestures"
+  ],
+  "author": {
+    "name": "Fabricio Moreira",
+    "email": "fabriciomoreira19@gmail.com",
+    "url": "https://fabriciomsantos.weebly.com/"
+  },
+  "type": "library",
+  "hideInEditor": false,
+  "dependencies": {
+    "com.unity.inputsystem": ""
+  }
+}
