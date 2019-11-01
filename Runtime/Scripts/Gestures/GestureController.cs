@@ -5,6 +5,7 @@ using System.Text;
 using TouchGestures.Drawing;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TouchGestures.Gestures
 {
@@ -15,6 +16,14 @@ namespace TouchGestures.Gestures
     [RequireComponent(typeof(PointerInputManager))]
     public class GestureController : MonoBehaviour
     {
+        [Serializable]
+        public class SwipeInputEvent : UnityEvent<SwipeInput>
+        { }
+
+        [Serializable]
+        public class TapInputEvent : UnityEvent<TapInput>
+        { }
+
         private PointerInputManager inputManager;
 
         // Maximum duration of a press before it can no longer be considered a tap.
@@ -54,20 +63,32 @@ namespace TouchGestures.Gestures
         /// </summary>
         public event Action<SwipeInput> Pressed;
 
+        [Tooltip("Event fired when the user presses on the screen.")]
+        public SwipeInputEvent onPressed = new SwipeInputEvent();
+
         /// <summary>
         /// Event fired for every motion (possibly multiple times a frame) of a potential swipe gesture.
         /// </summary>
         public event Action<SwipeInput> PotentiallySwiped;
+
+        [Tooltip("Event fired for every motion (possibly multiple times a frame) of a potential swipe gesture.")]
+        public SwipeInputEvent onPotentiallySwiped = new SwipeInputEvent();
 
         /// <summary>
         /// Event fired when a user performs a swipe gesture.
         /// </summary>
         public event Action<SwipeInput> Swiped;
 
+        [Tooltip("Event fired when a user performs a swipe gesture.")]
+        public SwipeInputEvent onSwiped = new SwipeInputEvent();
+
         /// <summary>
         /// Event fired when a user performs a tap gesture, on releasing.
         /// </summary>
         public event Action<TapInput> Tapped;
+
+        [Tooltip("Event fired when a user performs a tap gesture, on releasing.")]
+        public TapInputEvent onTapped = new TapInputEvent();
 
         protected virtual void Awake()
         {
@@ -123,8 +144,9 @@ namespace TouchGestures.Gestures
 #if UNITY_EDITOR
             DebugInfo(newGesture);
 #endif
-
-            Pressed?.Invoke(new SwipeInput(newGesture));
+            var swipeInput = new SwipeInput(newGesture);
+            Pressed?.Invoke(swipeInput);
+            onPressed?.Invoke(swipeInput);
         }
 
         private void OnDragged(PointerInput input, double time)
@@ -139,7 +161,9 @@ namespace TouchGestures.Gestures
 
             if (IsValidSwipe(ref existingGesture))
             {
-                PotentiallySwiped?.Invoke(new SwipeInput(existingGesture));
+                var swipeInput = new SwipeInput(existingGesture);
+                PotentiallySwiped?.Invoke(swipeInput);
+                onPotentiallySwiped?.Invoke(swipeInput);
             }
 
 #if UNITY_EDITOR
@@ -161,12 +185,16 @@ namespace TouchGestures.Gestures
 
             if (IsValidSwipe(ref existingGesture))
             {
-                Swiped?.Invoke(new SwipeInput(existingGesture));
+                var swipeInput = new SwipeInput(existingGesture);
+                Swiped?.Invoke(swipeInput);
+                onSwiped?.Invoke(swipeInput);
             }
 
             if (IsValidTap(ref existingGesture))
             {
-                Tapped?.Invoke(new TapInput(existingGesture));
+                var tapInput = new TapInput(existingGesture);
+                Tapped?.Invoke(tapInput);
+                onTapped?.Invoke(tapInput);
             }
 
 #if UNITY_EDITOR
