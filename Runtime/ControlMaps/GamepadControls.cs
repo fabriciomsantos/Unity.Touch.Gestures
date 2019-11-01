@@ -1,13 +1,14 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/ControlMaps/GamepadControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Packages/com.fabricio.touchgestures/Runtime/ControlMaps/GamepadControls.inputactions'
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace InputSamples.Controls
+namespace TouchGestures.Controls
 {
-    public class GamepadControls : IInputActionCollection
+    public class GamepadControls : IInputActionCollection, IDisposable
     {
         private InputActionAsset asset;
         public GamepadControls()
@@ -178,7 +179,7 @@ namespace InputSamples.Controls
             m_gameplay_button2Action = m_gameplay.FindAction("button2Action", throwIfNotFound: true);
         }
 
-        ~GamepadControls()
+        public void Dispose()
         {
             UnityEngine.Object.Destroy(asset);
         }

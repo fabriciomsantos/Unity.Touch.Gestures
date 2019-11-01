@@ -1,13 +1,14 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/ControlMaps/PointerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Packages/com.fabricio.touchgestures/Runtime/ControlMaps/PointerControls.inputactions'
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace InputSamples.Controls
+namespace TouchGestures.Controls
 {
-    public class PointerControls : IInputActionCollection
+    public class PointerControls : IInputActionCollection, IDisposable
     {
         private InputActionAsset asset;
         public PointerControls()
@@ -491,7 +492,7 @@ namespace InputSamples.Controls
             m_pointer_point = m_pointer.FindAction("point", throwIfNotFound: true);
         }
 
-        ~PointerControls()
+        public void Dispose()
         {
             UnityEngine.Object.Destroy(asset);
         }

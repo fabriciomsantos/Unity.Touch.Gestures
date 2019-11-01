@@ -1,8 +1,6 @@
 {
     "name": "TouchGestures.Editor",
-    "references": [
-        ""
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],
