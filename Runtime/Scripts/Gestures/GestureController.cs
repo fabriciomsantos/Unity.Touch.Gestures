@@ -40,7 +40,10 @@ namespace TouchGestures.Gestures
         [SerializeField]
         private float swipeDirectionSamenessThreshold = 0.6f;
 
-        [Header("Debug"), SerializeField, Multiline(12)]
+        [Header("Debug"), SerializeField]
+        //private Camera _camera;
+
+        [Multiline(13)]
         private string label;
 
         // Mapping of input IDs to their active gesture tracking objects.
@@ -184,6 +187,8 @@ namespace TouchGestures.Gestures
             builder.AppendLine();
             builder.AppendFormat("Position: {0}", gesture.EndPosition);
             builder.AppendLine();
+            builder.AppendFormat("Direction: {0}", (gesture.EndPosition - gesture.StartPosition).normalized);
+            builder.AppendLine();
             builder.AppendFormat("Duration: {0}", gesture.EndTime - gesture.StartTime);
             builder.AppendLine();
             builder.AppendFormat("Sameness: {0}", gesture.SwipeDirectionSameness);
@@ -200,12 +205,14 @@ namespace TouchGestures.Gestures
             builder.AppendLine();
 
             label = builder.ToString();
+            // if (_camera)
+            // {
+            //     var worldStart = _camera.ScreenToWorldPoint(gesture.StartPosition);
+            //     var worldEnd = _camera.ScreenToWorldPoint(gesture.EndPosition);
 
-            var worldStart = Camera.main.ScreenToWorldPoint(gesture.StartPosition);
-            var worldEnd = Camera.main.ScreenToWorldPoint(gesture.EndPosition);
-
-            worldStart.z += 5;
-            worldEnd.z += 5;
+            //     worldStart.z += 5;
+            //     worldEnd.z += 5;
+            // }
         }
 #endif
     }
