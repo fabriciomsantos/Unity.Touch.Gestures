@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace TouchGestures.Controls
 {
     public class UIJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [System.Serializable]
-        public class Vector2Event : UnityEvent<Vector2>{}
+        public class Vector2Event : UnityEvent<Vector2>
+        { }
 
         #region Public Variables
         public float movementRange = 50;
@@ -30,7 +28,7 @@ namespace TouchGestures.Controls
 
         public void OnDrag(PointerEventData data)
         {
-            deltaValue = (data.position - data.pressPosition);
+            deltaValue = data.position - data.pressPosition;
             deltaValue = Vector2.ClampMagnitude(deltaValue, movementRange);
 
             direction = new Vector2(deltaValue.x / movementRange, deltaValue.y / movementRange);

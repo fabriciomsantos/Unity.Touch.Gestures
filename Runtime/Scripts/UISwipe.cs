@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
@@ -9,7 +7,8 @@ namespace ReplaceMe
     public class UISwipe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [System.Serializable]
-        public class Vector2Event : UnityEvent<Vector2> { }
+        public class Vector2Event : UnityEvent<Vector2>
+        { }
 
         #region Public Variables
 
