@@ -1,7 +1,6 @@
 {
     "name": "TouchGestures.Runtime",
     "references": [
-        "GUID:aa309c5f2e0476946ba181c2a962e954",
         "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],

@@ -1,7 +1,11 @@
 {
     "name": "TouchGestures.Editor",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "GUID:b2bcd3c1f773c354a9cbbe5cc64ac24e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
