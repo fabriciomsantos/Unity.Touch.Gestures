@@ -8,10 +8,10 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace TouchGestures.Controls
 {
-    public class PointerControls : IInputActionCollection, IDisposable
+    public class @PointerControls : IInputActionCollection, IDisposable
     {
         private InputActionAsset asset;
-        public PointerControls()
+        public @PointerControls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""PointerControls"",
@@ -542,8 +542,8 @@ namespace TouchGestures.Controls
         private readonly InputAction m_pointer_point;
         public struct PointerActions
         {
-            private PointerControls m_Wrapper;
-            public PointerActions(PointerControls wrapper) { m_Wrapper = wrapper; }
+            private @PointerControls m_Wrapper;
+            public PointerActions(@PointerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @point => m_Wrapper.m_pointer_point;
             public InputActionMap Get() { return m_Wrapper.m_pointer; }
             public void Enable() { Get().Enable(); }
@@ -554,16 +554,16 @@ namespace TouchGestures.Controls
             {
                 if (m_Wrapper.m_PointerActionsCallbackInterface != null)
                 {
-                    point.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
-                    point.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
-                    point.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
+                    @point.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
+                    @point.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
+                    @point.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
                 }
                 m_Wrapper.m_PointerActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    point.started += instance.OnPoint;
-                    point.performed += instance.OnPoint;
-                    point.canceled += instance.OnPoint;
+                    @point.started += instance.OnPoint;
+                    @point.performed += instance.OnPoint;
+                    @point.canceled += instance.OnPoint;
                 }
             }
         }

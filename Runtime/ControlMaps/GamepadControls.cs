@@ -8,10 +8,10 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace TouchGestures.Controls
 {
-    public class GamepadControls : IInputActionCollection, IDisposable
+    public class @GamepadControls : IInputActionCollection, IDisposable
     {
         private InputActionAsset asset;
-        public GamepadControls()
+        public @GamepadControls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""GamepadControls"",
@@ -231,8 +231,8 @@ namespace TouchGestures.Controls
         private readonly InputAction m_gameplay_button2Action;
         public struct GameplayActions
         {
-            private GamepadControls m_Wrapper;
-            public GameplayActions(GamepadControls wrapper) { m_Wrapper = wrapper; }
+            private @GamepadControls m_Wrapper;
+            public GameplayActions(@GamepadControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @movement => m_Wrapper.m_gameplay_movement;
             public InputAction @button1Action => m_Wrapper.m_gameplay_button1Action;
             public InputAction @button2Action => m_Wrapper.m_gameplay_button2Action;
@@ -245,28 +245,28 @@ namespace TouchGestures.Controls
             {
                 if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
                 {
-                    movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
-                    movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
-                    movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
-                    button1Action.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton1Action;
-                    button1Action.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton1Action;
-                    button1Action.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton1Action;
-                    button2Action.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton2Action;
-                    button2Action.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton2Action;
-                    button2Action.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton2Action;
+                    @movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                    @movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                    @movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                    @button1Action.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton1Action;
+                    @button1Action.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton1Action;
+                    @button1Action.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton1Action;
+                    @button2Action.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton2Action;
+                    @button2Action.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton2Action;
+                    @button2Action.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnButton2Action;
                 }
                 m_Wrapper.m_GameplayActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    movement.started += instance.OnMovement;
-                    movement.performed += instance.OnMovement;
-                    movement.canceled += instance.OnMovement;
-                    button1Action.started += instance.OnButton1Action;
-                    button1Action.performed += instance.OnButton1Action;
-                    button1Action.canceled += instance.OnButton1Action;
-                    button2Action.started += instance.OnButton2Action;
-                    button2Action.performed += instance.OnButton2Action;
-                    button2Action.canceled += instance.OnButton2Action;
+                    @movement.started += instance.OnMovement;
+                    @movement.performed += instance.OnMovement;
+                    @movement.canceled += instance.OnMovement;
+                    @button1Action.started += instance.OnButton1Action;
+                    @button1Action.performed += instance.OnButton1Action;
+                    @button1Action.canceled += instance.OnButton1Action;
+                    @button2Action.started += instance.OnButton2Action;
+                    @button2Action.performed += instance.OnButton2Action;
+                    @button2Action.canceled += instance.OnButton2Action;
                 }
             }
         }

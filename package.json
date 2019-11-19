@@ -1,6 +1,6 @@
 {
   "name": "com.fabricio.touchgestures",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Touch Gestures",
   "description": "Touch Gestures",
   "unity": "2019.2",
@@ -22,6 +22,6 @@
   "type": "library",
   "hideInEditor": false,
   "dependencies": {
-    "com.unity.inputsystem": "1.0.0-preview.1"
+    "com.unity.inputsystem": "1.0.0-preview.3"
   }
 }
