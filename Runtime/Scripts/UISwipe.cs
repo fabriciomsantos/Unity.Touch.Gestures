@@ -11,7 +11,7 @@ namespace ReplaceMe
         { }
 
         #region Public Variables
-
+        public bool activeInput = true;
         public float swipeTime = .25f;
         public Vector2 swipeDirection = Vector2.zero;
         public Vector2Event swipeEvent = new Vector2Event();
@@ -43,7 +43,12 @@ namespace ReplaceMe
                     swipeDirection = deltaValue;
                     swipeDirection.x = Mathf.Round(swipeDirection.x * 10f) / 10f;
                     swipeDirection.y = Mathf.Round(swipeDirection.y * 10f) / 10f;
-                    swipeEvent.Invoke(swipeDirection);
+
+                    if (activeInput)
+                    {
+                        swipeEvent.Invoke(swipeDirection);
+                    }
+
                     finishSwipe = true;
                 }
             }
@@ -55,5 +60,9 @@ namespace ReplaceMe
         }
 
         #endregion
+        public void EnableInput(bool active)
+        {
+            activeInput = active;
+        }
     }
 }

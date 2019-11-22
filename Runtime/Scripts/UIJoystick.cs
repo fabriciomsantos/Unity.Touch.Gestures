@@ -11,6 +11,7 @@ namespace TouchGestures.Controls
         { }
 
         #region Public Variables
+        public bool activeInput = true;
         public float movementRange = 50;
         public Vector2 direction = Vector2.zero;
         public Vector2Event directionEvent = new Vector2Event();
@@ -33,16 +34,25 @@ namespace TouchGestures.Controls
 
             direction = new Vector2(deltaValue.x / movementRange, deltaValue.y / movementRange);
 
-            directionEvent.Invoke(direction);
+            if (activeInput)
+            {
+                directionEvent.Invoke(direction);
+            }
         }
 
         public void OnEndDrag(PointerEventData data)
         {
             direction = Vector2.zero;
-
-            directionEvent.Invoke(direction);
+            if (activeInput)
+            {
+                directionEvent.Invoke(direction);
+            }
         }
 
         #endregion
+        public void EnableInput(bool active)
+        {
+            activeInput = active;
+        }
     }
 }
