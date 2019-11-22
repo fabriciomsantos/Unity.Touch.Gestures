@@ -33,6 +33,7 @@ namespace TouchGestures.Controls
             deltaValue = Vector2.ClampMagnitude(deltaValue, movementRange);
 
             direction = new Vector2(deltaValue.x / movementRange, deltaValue.y / movementRange);
+            direction.y *= -1;
 
             if (activeInput)
             {
