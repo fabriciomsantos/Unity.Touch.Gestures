@@ -12,6 +12,7 @@ namespace TouchGestures.Controls
 
         #region Public Variables
         public bool activeInput = true;
+        public bool invertInput = false;
         public float movementRange = 50;
         public Vector2 direction = Vector2.zero;
         public Vector2Event directionEvent = new Vector2Event();
@@ -33,7 +34,8 @@ namespace TouchGestures.Controls
             deltaValue = Vector2.ClampMagnitude(deltaValue, movementRange);
 
             direction = new Vector2(deltaValue.x / movementRange, deltaValue.y / movementRange);
-            direction.y *= -1;
+
+            direction.y = invertInput ? direction.y * -1 : direction.y;
 
             if (activeInput)
             {
@@ -54,6 +56,11 @@ namespace TouchGestures.Controls
         public void EnableInput(bool active)
         {
             activeInput = active;
+        }
+
+        public void InvertInput(bool invert)
+        {
+            invertInput = invert;
         }
     }
 }
