@@ -1,8 +1,8 @@
 {
   "name": "com.fabricio.touchgestures",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "Touch Gestures",
-  "description": "Touch Gestures",
+  "description": "Unity package for touch controls",
   "unity": "2019.2",
   "repository": {
     "type": "git",
