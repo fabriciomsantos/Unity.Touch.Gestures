@@ -12,7 +12,7 @@ namespace TouchGestures.Controls
 
         #region Public Variables
         public bool activeInput = true;
-        public bool invertInput = false;
+        public bool invertInput;
         public float movementRange = 50;
         public Vector2 direction = Vector2.zero;
         public Vector2Event directionEvent = new Vector2Event();
