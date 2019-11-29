@@ -33,8 +33,8 @@ namespace TouchGestures.Controls
             deltaValue = data.position - data.pressPosition;
             deltaValue = Vector2.ClampMagnitude(deltaValue, movementRange);
 
-            direction = new Vector2(deltaValue.x / movementRange, deltaValue.y / movementRange);
-
+            direction.x = deltaValue.x / movementRange;
+            direction.y = deltaValue.y / movementRange;
             direction.y = invertInput ? direction.y * -1 : direction.y;
 
             if (activeInput)
