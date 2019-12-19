@@ -12,6 +12,7 @@ namespace TouchGestures.Controls
         #region Public Variables
         public bool activeInput = true;
         public bool invertInput;
+        public bool resetOnEnable;
         public float movementRange = 50;
         public Vector2 direction = Vector2.zero;
         public Vector2Event directionEvent = new Vector2Event();
@@ -29,9 +30,12 @@ namespace TouchGestures.Controls
         /// </summary>
         private void OnEnable()
         {
-            direction = Vector2.zero;
+            if (resetOnEnable)
+            {
+                direction = Vector2.zero;
 
-            directionEvent.Invoke(direction);
+                directionEvent.Invoke(direction);
+            }
         }
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -64,16 +68,6 @@ namespace TouchGestures.Controls
         }
 
         public void OnPointerUp(PointerEventData eventData)
-        {
-            direction = Vector2.zero;
-
-            directionEvent.Invoke(direction);
-        }
-
-        /// <summary>
-        /// This function is called when the behaviour becomes disabled or inactive.
-        /// </summary>
-        private void OnDisable()
         {
             direction = Vector2.zero;
 
