@@ -23,6 +23,16 @@ namespace TouchGestures.Controls
         #endregion
 
         #region Unity Methods
+
+        /// <summary>
+        /// This function is called when the object becomes enabled and active.
+        /// </summary>
+        private void OnEnable()
+        {
+            direction = Vector2.zero;
+
+            directionEvent.Invoke(direction);
+        }
         public void OnPointerDown(PointerEventData eventData)
         {
             if (eventData == null)
@@ -54,6 +64,16 @@ namespace TouchGestures.Controls
         }
 
         public void OnPointerUp(PointerEventData eventData)
+        {
+            direction = Vector2.zero;
+
+            directionEvent.Invoke(direction);
+        }
+
+        /// <summary>
+        /// This function is called when the behaviour becomes disabled or inactive.
+        /// </summary>
+        private void OnDisable()
         {
             direction = Vector2.zero;
 
