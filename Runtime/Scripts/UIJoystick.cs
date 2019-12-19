@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Layouts;
-using UnityEngine.InputSystem.OnScreen;
 namespace TouchGestures.Controls
 {
-    public class UIJoystick : OnScreenControl, IPointerDownHandler, IDragHandler, IPointerUpHandler
+    public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
         [System.Serializable]
         public class Vector2Event : UnityEvent<Vector2>
@@ -14,9 +11,6 @@ namespace TouchGestures.Controls
 
         #region Public Variables
         public bool activeInput = true;
-
-        [SerializeField][InputControl(layout = "Vector2")]
-        private string m_ControlPath;
         public bool invertInput;
         public float movementRange = 50;
         public Vector2 direction = Vector2.zero;
@@ -24,34 +18,29 @@ namespace TouchGestures.Controls
         #endregion
 
         #region Private Variables
-        private Vector2 deltaValue = Vector2.zero;
-
-        protected override string controlPathInternal
-        {
-            get => m_ControlPath;
-            set => m_ControlPath = value;
-        }
+        private Vector2 deltaValue;
+        private Vector2 pressPosition;
         #endregion
 
         #region Unity Methods
-        public void OnPointerDown(PointerEventData data)
+        public void OnPointerDown(PointerEventData eventData)
         {
-            if (data == null)
+            if (eventData == null)
             {
                 return;
             }
 
-            deltaValue = Vector2.zero;
+            pressPosition = eventData.pressPosition;
         }
 
-        public void OnDrag(PointerEventData data)
+        public void OnDrag(PointerEventData eventData)
         {
-            if (data == null)
+            if (eventData == null)
             {
                 return;
             }
 
-            deltaValue = data.position - data.pressPosition;
+            deltaValue = eventData.position - pressPosition;
             deltaValue = Vector2.ClampMagnitude(deltaValue, movementRange);
 
             direction.x = deltaValue.x / movementRange;
@@ -61,16 +50,14 @@ namespace TouchGestures.Controls
             if (activeInput)
             {
                 directionEvent.Invoke(direction);
-                SendValueToControl(direction);
             }
         }
 
-        public void OnPointerUp(PointerEventData data)
+        public void OnPointerUp(PointerEventData eventData)
         {
             direction = Vector2.zero;
 
             directionEvent.Invoke(direction);
-            SendValueToControl(direction);
         }
 
         #endregion
