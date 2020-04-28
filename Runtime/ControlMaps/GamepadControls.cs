@@ -10,7 +10,7 @@ namespace TouchGestures.Controls
 {
     public class @GamepadControls : IInputActionCollection, IDisposable
     {
-        private InputActionAsset asset;
+        public InputActionAsset asset { get; }
         public @GamepadControls()
         {
             asset = InputActionAsset.FromJson(@"{
